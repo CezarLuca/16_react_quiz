@@ -2,6 +2,7 @@ import { useState, useReducer } from "react";
 
 const reducer = function (state, action) {
     console.log(state, action);
+    return state + action;
 };
 
 function DateCounter() {
@@ -15,6 +16,7 @@ function DateCounter() {
     date.setDate(date.getDate() + count);
 
     const dec = function () {
+        dispatch({ type: "decrement", payload: -1 });
         // setCount((count) => count - 1);
         // setCount((count) => count - step);
     };
