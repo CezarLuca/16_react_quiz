@@ -1,7 +1,21 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 
 const reducer = function (state, action) {
     console.log(state, action);
+
+    // return { count: 0, step: 1 };
+
+    switch (action.type) {
+        case "increment":
+            return { count: state.count + state.step, step: state.step };
+        case "decrement":
+            return { count: state.count - state.step, step: state.step };
+        case "setCount":
+            return { count: action.payload, step: state.step };
+        default:
+            return state;
+    }
+
     // if (action.type === "increment") {
     //     return state + 1;
     // } else if (action.type === "decrement") {
