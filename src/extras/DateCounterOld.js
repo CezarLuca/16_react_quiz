@@ -5,6 +5,8 @@ const initialState = { count: 0, step: 1 };
 const reducer = function (state, action) {
     console.log(state, action);
 
+    // return { count: 0, step: 1 };
+
     switch (action.type) {
         case "increment":
             return { ...state, count: state.count + state.step };
@@ -19,9 +21,21 @@ const reducer = function (state, action) {
         default:
             throw new Error("Invalid action type");
     }
+
+    // if (action.type === "increment") {
+    //     return state + 1;
+    // } else if (action.type === "decrement") {
+    //     return state - 1;
+    // } else if (action.type === "setCount") {
+    //     return action.payload;
+    // }
 };
 
 function DateCounter() {
+    // const [count, setCount] = useState(0);
+
+    // const [step, setStep] = useState(1);
+
     const [state, dispatch] = useReducer(reducer, initialState);
     const { count, step } = state;
 
@@ -31,22 +45,30 @@ function DateCounter() {
 
     const dec = function () {
         dispatch({ type: "decrement" });
+        // setCount((count) => count - 1);
+        // setCount((count) => count - step);
     };
 
     const inc = function () {
         dispatch({ type: "increment" });
+        // setCount((count) => count + 1);
+        // setCount((count) => count + step);
     };
 
     const defineCount = function (e) {
         dispatch({ type: "setCount", payload: Number(e.target.value) });
+        // setCount(Number(e.target.value));
     };
 
     const defineStep = function (e) {
         dispatch({ type: "setStep", payload: Number(e.target.value) });
+        // setStep({ type: "", payload: Number(e.target.value) });
     };
 
     const reset = function () {
         dispatch({ type: "reset" });
+        // setCount(0);
+        // setStep(1);
     };
 
     return (
