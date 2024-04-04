@@ -16,6 +16,9 @@
     2. Stores related pieces of state in a state object.
     3. useReducer need reducer: function containing all logic to update state. Decouples state 
         logic from component logic.
-    4. 
-    5. 
+    4. reducer: pure function (no side effects!) that takes current state and action, and returns
+        the next state.
+    5. action: object that describes how to update state. Must have a type property.
+    6. dispatch: function to trigger state updates, by "sending" actions from event handlers to
+        the reducer.
 */
