@@ -6,6 +6,10 @@ export default function App() {
         <div className="app">
             {/* <DateCounter /> */}
             <Header />
+            <main className="main">
+                <p>1/15</p>
+                <p>Question?</p>
+            </main>
         </div>
     );
 }
