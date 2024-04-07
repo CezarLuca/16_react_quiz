@@ -1,13 +1,29 @@
 // import DateCounter from "./DateCounter";
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import Header from "./Header";
 import Main from "./Main";
 
+const initialState = {
+    questions: [],
+    status: "loading", // "loading", "ready", "active", "finished", "error"
+};
+
+function reducer(state, action) {
+    switch (action.type) {
+        case "dataRecieved":
+            return { ...state, questions: action.payload, status: "ready" };
+        default:
+            throw new Error(`Unknown action type: ${action.type}`);
+    }
+}
+
 export default function App() {
+    const [state, dispatch] = useReducer(reducer, initialState);
     useEffect(() => {
         fetch("http://localhost:9000/questions")
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            // .then((data) => console.log(data))
+            .then((data) => dispatch({ type: "dataRecieved", payload: data }))
             .catch((error) => console.error(error));
     }, []);
     return (
