@@ -5,6 +5,7 @@ import Main from "./Main";
 import Loader from "./Loader";
 import Error from "./Error";
 import StartScreen from "./StartScreen";
+import QuestionScreen from "./QuestionScreen";
 
 const initialState = {
     questions: [],
@@ -45,6 +46,7 @@ export default function App() {
                 {status === "ready" && (
                     <StartScreen numberOfQuestions={numberOfQuestions} />
                 )}
+                {status === "active" && <QuestionScreen />}
             </Main>
         </div>
     );
