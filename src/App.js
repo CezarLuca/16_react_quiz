@@ -12,6 +12,8 @@ function reducer(state, action) {
     switch (action.type) {
         case "dataRecieved":
             return { ...state, questions: action.payload, status: "ready" };
+        case "dataError":
+            return { ...state, status: "error" };
         default:
             throw new Error(`Unknown action type: ${action.type}`);
     }
@@ -24,7 +26,8 @@ export default function App() {
             .then((response) => response.json())
             // .then((data) => console.log(data))
             .then((data) => dispatch({ type: "dataRecieved", payload: data }))
-            .catch((error) => console.error(error));
+            // .catch((error) => console.error(error));
+            .catch(() => dispatch({ type: "dataError" }));
     }, []);
     return (
         <div className="app">
