@@ -23,7 +23,7 @@ function reducer(state, action) {
 }
 
 export default function App() {
-    const [{ question, status }, dispatch] = useReducer(reducer, initialState);
+    const [{ questions, status }, dispatch] = useReducer(reducer, initialState);
     useEffect(() => {
         fetch("http://localhost:9000/questions")
             .then((response) => response.json())
@@ -32,6 +32,9 @@ export default function App() {
             // .catch((error) => console.error(error));
             .catch(() => dispatch({ type: "dataError" }));
     }, []);
+
+    const numberOfQuestions = questions.length;
+
     return (
         <div className="app">
             {/* <DateCounter /> */}
@@ -39,7 +42,9 @@ export default function App() {
             <Main>
                 {status === "loading" && <Loader />}
                 {status === "error" && <Error />}
-                {status === "ready" && <StartScreen />}
+                {status === "ready" && (
+                    <StartScreen numberOfQuestions={numberOfQuestions} />
+                )}
             </Main>
         </div>
     );
