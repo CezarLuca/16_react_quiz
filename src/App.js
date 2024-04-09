@@ -18,6 +18,8 @@ function reducer(state, action) {
             return { ...state, questions: action.payload, status: "ready" };
         case "dataError":
             return { ...state, status: "error" };
+        case "start":
+            return { ...state, status: "active" };
         default:
             throw new Error(`Unknown action type: ${action.type}`);
     }
@@ -44,7 +46,10 @@ export default function App() {
                 {status === "loading" && <Loader />}
                 {status === "error" && <Error />}
                 {status === "ready" && (
-                    <StartScreen numberOfQuestions={numberOfQuestions} />
+                    <StartScreen
+                        numberOfQuestions={numberOfQuestions}
+                        dispatch={dispatch}
+                    />
                 )}
                 {status === "active" && <QuestionScreen />}
             </Main>
