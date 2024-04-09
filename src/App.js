@@ -1,11 +1,11 @@
 // import DateCounter from "./DateCounter";
 import { useEffect, useReducer } from "react";
-import Header from "./Header";
-import Main from "./Main";
-import Loader from "./Loader";
-import Error from "./Error";
-import StartScreen from "./StartScreen";
-import QuestionScreen from "./QuestionScreen";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Loader from "./components/Loader";
+import Error from "./components/Error";
+import StartScreen from "./components/StartScreen";
+import QuestionScreen from "./components/QuestionScreen";
 
 const initialState = {
     questions: [],
