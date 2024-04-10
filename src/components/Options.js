@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Options({ question }) {
+export default function Options({ question, dispatch, answer }) {
     return (
         <div>
             <div className="options">
