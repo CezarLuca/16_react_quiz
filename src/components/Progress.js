@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Progress({
     index,
-    numQuestions,
+    numberOfQuestions,
     points,
     maxPossiblePoints,
     answer,
@@ -10,11 +10,11 @@ export default function Progress({
     return (
         <header className="progress">
             <progress
-                max={numQuestions}
+                max={numberOfQuestions}
                 value={index + Number(answer !== null)}
             ></progress>
             <p>
-                Question <strong>{index + 1}</strong> / {numQuestions}
+                Question <strong>{index + 1}</strong> / {numberOfQuestions}
             </p>
             <p>
                 <strong>{points}</strong> / {maxPossiblePoints} points

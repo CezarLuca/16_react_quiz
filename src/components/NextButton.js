@@ -1,9 +1,23 @@
 import React from "react";
 
-export default function NextButton({ dispatch, answer }) {
+export default function NextButton({
+    dispatch,
+    answer,
+    index,
+    numberOfQuestions,
+}) {
     if (answer === null) {
         return (
             <button disabled className="btn btn-ui">
+                Next
+            </button>
+        );
+    } else if (index < numberOfQuestions - 1) {
+        return (
+            <button
+                className="btn btn-ui"
+                onClick={() => dispatch({ type: "nextQuestion" })}
+            >
                 Next
             </button>
         );
@@ -11,9 +25,9 @@ export default function NextButton({ dispatch, answer }) {
         return (
             <button
                 className="btn btn-ui"
-                onClick={() => dispatch({ type: "nextQuestion" })}
+                onClick={() => dispatch({ type: "finish" })}
             >
-                Next
+                Finish
             </button>
         );
     }
