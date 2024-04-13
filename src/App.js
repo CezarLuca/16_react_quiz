@@ -62,6 +62,10 @@ export default function App() {
     }, []);
 
     const numberOfQuestions = questions.length;
+    const maxPossiblePoints = questions.reduce(
+        (previousPoints, question) => previousPoints + question.points,
+        0
+    );
 
     return (
         <div className="app">
@@ -82,6 +86,8 @@ export default function App() {
                             index={index}
                             numQuestions={numberOfQuestions}
                             points={points}
+                            maxPossiblePoints={maxPossiblePoints}
+                            answer={answer}
                         />
                         <QuestionScreen
                             question={questions[index]}
