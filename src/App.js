@@ -56,9 +56,17 @@ function reducer(state, action) {
         case "restart":
             return {
                 ...initialState,
+                questions: state.questions,
                 status: "ready",
                 highscore: state.highscore,
             };
+        // return {
+        //     ...state,
+        //     status: "ready",
+        //     index: 0,
+        //     answer: null,
+        //     points: 0,
+        // };
 
         default:
             throw new Error(`Unknown action type: ${action.type}`);
