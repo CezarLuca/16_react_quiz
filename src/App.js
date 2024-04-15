@@ -19,6 +19,7 @@ const initialState = {
     answer: null,
     points: 0,
     highscore: 0,
+    secondsRemaining: 300,
 };
 
 function reducer(state, action) {
@@ -69,6 +70,11 @@ function reducer(state, action) {
         //     answer: null,
         //     points: 0,
         // };
+        case "tick":
+            return {
+                ...state,
+                secondsRemaining: state.secondsRemaining - 1,
+            };
 
         default:
             throw new Error(`Unknown action type: ${action.type}`);
@@ -76,8 +82,18 @@ function reducer(state, action) {
 }
 
 export default function App() {
-    const [{ questions, status, index, answer, points, highscore }, dispatch] =
-        useReducer(reducer, initialState);
+    const [
+        {
+            questions,
+            status,
+            index,
+            answer,
+            points,
+            highscore,
+            secondsRemaining,
+        },
+        dispatch,
+    ] = useReducer(reducer, initialState);
     useEffect(() => {
         fetch("http://localhost:9000/questions")
             .then((response) => response.json())
@@ -121,7 +137,10 @@ export default function App() {
                             answer={answer}
                         />
                         <Footer>
-                            <Timer />
+                            <Timer
+                                dispatch={dispatch}
+                                secondsRemaining={secondsRemaining}
+                            />
                             <NextButton
                                 dispatch={dispatch}
                                 answer={answer}
