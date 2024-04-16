@@ -74,6 +74,8 @@ function reducer(state, action) {
             return {
                 ...state,
                 secondsRemaining: state.secondsRemaining - 1,
+                status:
+                    state.secondsRemaining === 0 ? "finished" : state.status,
             };
 
         default:

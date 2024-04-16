@@ -5,10 +5,11 @@ export default function Timer({ dispatch, secondsRemaining }) {
     let seconds = secondsRemaining % 60;
 
     useEffect(() => {
-        setInterval(() => {
+        const id = setInterval(() => {
             // console.log("tick");
             dispatch({ type: "tick" });
         }, 1000);
+        return () => clearInterval(id);
     }, [dispatch]);
 
     return (
