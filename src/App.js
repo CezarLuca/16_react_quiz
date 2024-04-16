@@ -12,6 +12,8 @@ import FinishScreen from "./components/FinishScreen";
 import Footer from "./components/Footer";
 import Timer from "./components/Timer";
 
+const SECONDS_PER_QUESTION = 40;
+
 const initialState = {
     questions: [],
     status: "loading", // "loading", "ready", "active", "finished", "error"
@@ -19,7 +21,7 @@ const initialState = {
     answer: null,
     points: 0,
     highscore: 0,
-    secondsRemaining: 300,
+    secondsRemaining: null,
 };
 
 function reducer(state, action) {
@@ -29,7 +31,11 @@ function reducer(state, action) {
         case "dataError":
             return { ...state, status: "error" };
         case "start":
-            return { ...state, status: "active" };
+            return {
+                ...state,
+                status: "active",
+                secondsRemaining: state.questions.length * SECONDS_PER_QUESTION,
+            };
         case "newAnswer":
             // const question = state.questions[state.index];
             const question = state.questions.at(state.index);

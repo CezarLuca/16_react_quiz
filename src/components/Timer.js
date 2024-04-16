@@ -14,7 +14,8 @@ export default function Timer({ dispatch, secondsRemaining }) {
 
     return (
         <div className="timer">
-            Time Left: {minutesRemaining}:
+            Time Left:{" "}
+            {minutesRemaining < 10 ? `0${minutesRemaining}` : minutesRemaining}:
             {seconds < 10 ? `0${seconds}` : seconds}
         </div>
     );
