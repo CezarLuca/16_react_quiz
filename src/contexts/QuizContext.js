@@ -86,4 +86,40 @@ function QuizProvider({ children }) {
 
     const numQuestions = question.length;
     const maxPossiblePoints = question.reduce((acc, q) => acc + q.points, 0);
+
+    useEffect(() => {
+        fetch("http://localhost:9000/questions")
+            .then((res) => res.json())
+            .then((data) => dispatch({ type: "dataRecieved", payload: data }))
+            .catch(() => dispatch({ type: "dataFailed" }));
+    }, []);
+
+    return (
+        <QuizContext.Provider
+            value={{
+                question,
+                status,
+                index,
+                answer,
+                points,
+                highscore,
+                secondsRemaining,
+                numQuestions,
+                maxPossiblePoints,
+                dispatch,
+            }}
+        >
+            {children}
+        </QuizContext.Provider>
+    );
 }
+
+function useQuiz() {
+    const context = useContext(QuizContext);
+    if (!context) {
+        throw new Error("useQuiz must be used within a QuizProvider");
+    }
+    return context;
+}
+
+export { QuizProvider, useQuiz };
