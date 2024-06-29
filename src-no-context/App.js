@@ -11,7 +11,6 @@ import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
 import Footer from "./components/Footer";
 import Timer from "./components/Timer";
-import { ProgressProvider } from "./contexts/ProgressContext";
 
 const SECONDS_PER_QUESTION = 40;
 
